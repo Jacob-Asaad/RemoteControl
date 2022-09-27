@@ -1,17 +1,11 @@
-﻿using System;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Channels;
-using System.Threading;
-using System.Runtime.CompilerServices;
-
-
-public interface IRemote //remote interface 
+﻿
+interface IRemote //remote interface 
 {
-    void powerCommand(string command);
-    void sourceCommand(string command);
-    void channelCommand(string command);
-    void infoCommand(string command);
-    void volumeCommand(string command);
+    void PowerCommand(string command);
+    void SourceCommand(string command);
+    void ChannelCommand(string command);
+    void InfoCommand(string command);
+    void VolumeCommand(string command);
 }
 
 public class Remote 
@@ -20,6 +14,7 @@ public class Remote
 	
     public Remote()
     {
+
 	}
 
 }
