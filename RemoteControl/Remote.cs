@@ -4,7 +4,7 @@ using System.Threading.Channels;
 using System.Threading;
 using System.Runtime.CompilerServices;
 
-/*
+
 public interface IRemote //remote interface 
 {
     void powerCommand(string command);
@@ -13,14 +13,13 @@ public interface IRemote //remote interface
     void infoCommand(string command);
     void volumeCommand(string command);
 }
-*/
-public class Remote //TODO check remote and delegate command to remoteHandler in Screen.cs
+
+public class Remote 
 {
-   // public delegate void SendCommand(String command);
-	//private SendCommand remoteToScreen;
-    public Remote()//Screen updateScreen SendCommand userInput
+
+	
+    public Remote()
     {
-	//	remoteToScreen = userInput;
 	}
 
 }

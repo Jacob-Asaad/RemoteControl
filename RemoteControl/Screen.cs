@@ -28,9 +28,9 @@ public abstract class Screen : IRemote
     protected bool Mute { get => mute; set => mute = value; }
     protected string Source { get => source; set => source = value; }
 
-    void IRemote.Power(string remoteCommand)
+    void IRemote.powerCommand(string command)
     {
-        if (remoteCommand == "power" && powerOn == true)
+        if (command == "power" && powerOn == true)
         {
             this.powerOn = false;
             Console.Write("Power: Off");
@@ -42,7 +42,7 @@ public abstract class Screen : IRemote
 
     }
 
-     void IRemote.Source(string command)
+     void IRemote.sourceCommand(string command)
     {
         string sourceOptions = "[1]antenna [2][hdmi2] [3][hdmi2]";
 
@@ -53,17 +53,17 @@ public abstract class Screen : IRemote
         }
     }
 
-    void IRemote.Channel(string command)
+    void IRemote.channelCommand(string command)
     {
         throw new NotImplementedException();
     }
 
-    void IRemote.Info(string command)
+    void IRemote.infoCommand(string command)
     {
         throw new NotImplementedException();
     }
 
-    void IRemote.Volume(string command)
+    void IRemote.volumeCommand(string command)
     {
         throw new NotImplementedException();
     }
@@ -80,10 +80,7 @@ public abstract class Screen : IRemote
         Console.WriteLine("\t|                                     |");
         Console.WriteLine("\t---------------------------------------");
     }
-    public void screenMenu(Boolean ctrlScreenMenu)
-    {
-        Boolean introCheck = ctrlScreenMenu; //set to true to let menu run
-    }
+   
 
     public Screen(String id, String name) // Screen constructor
 	 {
@@ -98,8 +95,7 @@ public abstract class Screen : IRemote
          smartMenu = false ;
      }
     /*
-    public void remoteCommandHandler() //String id, String name
-    {
+    public void remoteCommandHandler()
         string remoteCommand="";
         // this.ModelNumber = id;
         //  this.ModelName = name;
