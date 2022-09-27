@@ -23,7 +23,7 @@
         protected bool Mute { get => mute; set => mute = value; }
         protected string Source { get => source; set => source = value; }
 
-        void IRemote.PowerCommand(string remoteCommand)
+        public void PowerCommand(string remoteCommand)
         {
             if (remoteCommand == "power" && this.powerOn == true)
             {
@@ -38,7 +38,7 @@
 
         }
 
-        void IRemote.SourceCommand(string remoteCommand)
+        public void SourceCommand(string remoteCommand)
         {
             string sourceOptions = "[1]antenna [2][hdmi2] [3][hdmi2]";
 
@@ -49,17 +49,17 @@
             }
         }
 
-        void IRemote.ChannelCommand(string remoteCommand)
+        public void ChannelCommand(string remoteCommand)
         {
             throw new NotImplementedException();
         }
 
-        void IRemote.InfoCommand(string remoteCommand)
+        public void InfoCommand(string remoteCommand)
         {
             throw new NotImplementedException();
         }
 
-        void IRemote.VolumeCommand(string remoteCommand)
+        public void VolumeCommand(string remoteCommand)
         {
             int maxVol = 100;
             int minVol = 1;
@@ -79,6 +79,7 @@
                 }
                 else { this.volume = this.volume; }
             }
+            this.DisplayScreen("Volume: " + this.volume.ToString());
         }
 
         public void DisplayScreen(string displayCommand)
@@ -107,7 +108,7 @@
             mute = false;
             smartMenu = false;
         }
-
+    /*
         public void RemoteCommandHandler()
         {
             string remoteCommand = "";
@@ -143,8 +144,50 @@
 
         }
 
-
-
-
+    */
+    static void RemoteCommandHandler(string command)
+    {
+        if (command == "pwr")
+        {
+            //do power command
+        }
+        else if (command == "src")
+        {
+            //do source command
+        }
+        else if (command == "ch")
+        {
+            //do channel command
+        }
+        else if (command == "ch+")
+        {
+            //do channel+ command
+        }
+        else if (command == "ch-")
+        {
+            //do channel- command
+        }
+        else if (command == "last")
+        {
+            //do last channel  command
+        }
+        else if (command == "vol+" || command == "vol-")
+        {
+           // Screen.VolumeCommand(command);
+        }
+        else if (command == "menu")
+        {
+            //do menu command
+        }
+        else if (command == "settings")
+        {
+            //do settings command
+        }
+        else { return; }
     }
+
+
+
+
+}
 

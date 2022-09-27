@@ -13,9 +13,11 @@
                     Console.Clear();
                     Console.WriteLine("\n\n                 UN43TU7000 Selected");
                     Un43Model un43 = new Un43Model("43", "UN43TU7000"); //create a new screen and introduce a new menu              
-                    un43.DisplayScreen("hello"); //temporary output to display
-                  //  un43.VolumeCommand("vol+"); <--not working
-                    DisplayRemote();
+                  //  un43.DisplayScreen("hello"); //temporary output to display
+                    un43.VolumeCommand("vol+");
+                un43.DisplayScreen("Volume");
+                // un43.PowerCommand("he");
+                DisplayRemote();
                     introCheck = false;
                     break;
                 case 2:
@@ -70,36 +72,7 @@
         Console.WriteLine(" [+]        [↓]");
         Console.WriteLine("[Settings][Menu]");
     }
-    static void RemoteCommandHandler(string command)
-    {
-        if (command == "pwr")
-        {
-            //do power command
-        }
-        else if (command == "src")
-        {
-            //do source command
-        }
-        else if (command == "ch")
-        {
-            //do channel command
-        }
-        else if (command == "vol+" || command == "vol-")
-        {
-            //do volume command
-        }
-        else if (command == "menu")
-        {
-            //do menu command
-        }
-        else if (command == "settings")
-        {
-            //do settings command
-        }
-        else { return; }
-    }
-
-
+    
 
     // ============================Main=================================
     
