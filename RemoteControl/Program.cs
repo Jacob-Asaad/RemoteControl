@@ -2,7 +2,8 @@
     static void introMenu(Boolean ctrlIntroMenu) {
         Boolean introCheck = ctrlIntroMenu; //set to true to let menu run
         int modelSelect;
-        do
+
+    do
         {
             Console.WriteLine("[1] UN43  [2] UN50  [3] UN55  [4] UN58  [5] UN65  [6] UN70  [7] UN75");
             Console.Write("Select A TU7000 TV Model: ");
@@ -12,20 +13,42 @@
                 case 1:
                     Console.Clear();
                     Console.WriteLine("\n\n                 UN43TU7000 Selected");
-                    Un43Model un43 = new Un43Model("43", "UN43TU7000"); //create a new screen and introduce a new menu              
-                  //  un43.DisplayScreen("hello"); //temporary output to display
-                    un43.VolumeCommand("vol+");
-                un43.DisplayScreen("Volume");
-                // un43.PowerCommand("he");
-                DisplayRemote();
+                    Un43Model un43 = new Un43Model(); //create a new screen and introduce a new menu              
+                    Remote remote = new Remote(un43);
+                un43.DisplayScreen("Power: Off");
+                string userInput;
+                remote.DisplayRemote();  
+                do
+               {
+                    Console.WriteLine("enter command");
+                    userInput = Console.ReadLine();
+                    remote.RemoteCommandHandler(userInput);
+                    remote.DisplayRemote();
+
+                } while (userInput != "exit");
+               
                     introCheck = false;
                     break;
                 case 2:
-                    Console.Clear();
-                    Console.WriteLine("UN50TU7000 Selected");
-                    introCheck = false;
-                    break;
-                case 3:
+                Console.Clear();
+                Console.WriteLine("\n\n                 UN50TU7000 Selected");
+                Un50Model un50 = new Un50Model(); //create a new screen and introduce a new menu              
+                remote = new Remote(un50);
+                un50.DisplayScreen("Power: Off");
+                string userInput2;
+                remote.DisplayRemote();
+                do
+                {
+                    Console.WriteLine("enter command");
+                    userInput2 = Console.ReadLine();
+                    remote.RemoteCommandHandler(userInput2);
+                    remote.DisplayRemote();
+
+                } while (userInput2 != "exit");
+
+                introCheck = false;
+                break;
+            case 3:
                     Console.Clear();
                     Console.WriteLine("UN55TU7000 Selected");
                     introCheck = false;
@@ -60,6 +83,7 @@
     }
 
     //create remote 
+    /*
     static void DisplayRemote()
     {
         Console.WriteLine("[PWR]   [SRC]");
@@ -69,12 +93,54 @@
         Console.WriteLine("[-]        [PRE-CH]");
         Console.WriteLine(" [+] [MUTE] [↑]");
         Console.WriteLine("[VOL]      [Ch]");
-        Console.WriteLine(" [+]        [↓]");
+        Console.WriteLine(" [-]        [↓]");
         Console.WriteLine("[Settings][Menu]");
     }
-    
+    */
+/*
+ void RemoteCommandHandler(string command)
+{
+  
+    if (command == "pwr")
+    {
+      //do pwr command
+    }
+    else if (command == "src")
+    {
+        //do source command
+    }
+    else if (command == "ch")
+    {
+        //do channel command
+    }
+    else if (command == "ch+")
+    {
+        //do channel+ command
+    }
+    else if (command == "ch-")
+    {
+        //do channel- command
+    }
+    else if (command == "last")
+    {
+        //do last channel  command
+    }
+    else if (command == "vol+" || command == "vol-")
+    {
+       // VolumeCommand(command);
+    }
+    else if (command == "menu")
+    {
+        //do menu command
+    }
+    else if (command == "settings")
+    {
+        //do settings command
+    }
+    else { return; }
+}
+*/
+// ============================Main=================================
 
-    // ============================Main=================================
-    
-        introMenu(true);
+introMenu(true);
     
