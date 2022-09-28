@@ -1,19 +1,19 @@
 ﻿using System;
 
-public class Un50Model : Screen
+public class Un55Model : Screen
 {
     protected long upcNum;
     protected string orderCode;
-    public Un50Model() 
+    public Un55Model()
 	{
-        orderCode = "UN50TU7000FXZA";
-        upcNum = 887276402147;
-        modelNumber = "UN50TU7000";
+        orderCode = "UN55TU7000FXZA";
+        upcNum = 887276400044;
+        modelNumber = "UN55TU7000";
     }
     public override void SettingsCommand()
     {
         Console.Clear();
-        Console.WriteLine("\n=====Current Information====");
+        Console.WriteLine("=====Current Information====");
         Console.WriteLine("Model #: " + this.modelNumber);
         Console.WriteLine("UPC #: " + this.upcNum);
         Console.WriteLine("Order Code: " + this.orderCode);

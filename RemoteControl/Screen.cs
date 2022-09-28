@@ -1,5 +1,5 @@
 ﻿
-    public abstract class Screen 
+    public class Screen 
     {
         protected string modelName;
         protected string modelNumber;
@@ -24,177 +24,188 @@
         protected bool Mute { get => mute; set => mute = value; }
         protected string Source { get => source; set => source = value; }
     
-        public void PowerCommand(string remoteCommand)
+        public void PowerCommand()
         {
-            if (remoteCommand == "pwr" && this.powerOn == true)
+            if (this.powerOn == true)
             {
                 this.powerOn = false;
                 this.DisplayScreen("Power: Off");
-        }
+            }
             else
             {
                 this.powerOn = true;
                 this.DisplayScreen("Power: On");
                 Console.Clear();
                 this.DisplayScreen("");
-        }
+            }
 
         }
 
-        public void SourceCommand(string remoteCommand)
+        public void SourceCommand()
         {
+            Console.Clear();
             string sourceOptions = "[1]ANTENNA [2]HDMI1 [3]HDMI2";
             this.DisplayScreen("Sources: " + sourceOptions);
         
-            if (remoteCommand == "src" && this.powerOn == true)
+            if (this.powerOn == true)
             {
-                string UserInput = Console.ReadLine();
-            switch(UserInput){
+            Console.Write("Choose Source: ");
+             string UserInput = Console.ReadLine();
+                switch(UserInput){
                 case "1":
                     this.source = "ANTENNA";
-                    this.DisplayScreen("Source: " + this.source);
-                    Thread.Sleep(2500);
                     Console.Clear();
-                    this.DisplayScreen("");
+                    this.DisplayScreen("Source: " + this.source);
                     break;
                 case "2":
                     this.source = "HDMI1";
-                    this.DisplayScreen("Source: " + this.source);
-                    Thread.Sleep(2500);
                     Console.Clear();
-                    this.DisplayScreen("");
+                    this.DisplayScreen("Source: " + this.source);
                     break;
                 case "3":
                     this.source = "HDMI2";
-                    this.DisplayScreen("Source: " + this.source);
-                    Thread.Sleep(2500);
                     Console.Clear();
-                    this.DisplayScreen("");
+                    this.DisplayScreen("Source: " + this.source);
                     break;
                 default:
-                    this.DisplayScreen("Invalid Source");
-                    Thread.Sleep(2500);
                     Console.Clear();
-                    this.DisplayScreen("");
+                    this.DisplayScreen("Invalid Source");
                     break;
-            }
+                }
       
             }
-       
+            else {Console.Clear(); this.DisplayScreen("Power Is Off, Turn It On");}
         }
+
         public void MuteCommand()
         {
-            if(this.mute == false)
+            if (this.powerOn == true)
             {
-                this.mute = true;
-                this.DisplayScreen("Audio Muted");
-        }
-            else { this.mute = false; this.DisplayScreen(""); }
-        }
-        public void ChannelCommand(string remoteCommand)
-        {
-        int maxChannel = 999;
-        int minChannel = 1;
-        if (remoteCommand == "ch+" && this.powerOn == true)
-        {
-            if (this.channel <= maxChannel)
-            {
-                previousChannel = this.channel;
-                ++this.channel;
-            }
-            else { this.channel = this.channel; }
-        }
-        if (remoteCommand == "ch-" && this.powerOn == true)
-        {
-            if (this.channel >= minChannel)
-            {
-                previousChannel = this.channel;
-                --this.channel;
-            }
-            else { this.channel = this.channel; }
-        }
-        this.DisplayScreen("Channel: " + this.channel.ToString());
-    }
-
-    public void LastChannel(string remoteCommand)
-    {
-        if (remoteCommand == "last" && this.powerOn == true)
-        {
-            this.channel = this.previousChannel;
-            this.DisplayScreen("Channel: " + this.channel.ToString());
-        }
-    }
-
-        public void InfoCommand(string remoteCommand)
-       {
-            Console.WriteLine("Model: " +this.modelName);
-            Console.WriteLine("Model #: " +this.modelNumber);
-            Console.WriteLine("Current Volume: " +this.volume);
-            Console.WriteLine("Current Channel: " +this.channel);
-            Console.WriteLine("Power State: " +this.powerOn);
-            Console.WriteLine("Mute State: " +this.mute);
-            Console.WriteLine("Smart Menu State: " +this.smartMenu);
-        }
-
-        public void VolumeCommand(string remoteCommand)
-        {
-            int maxVol = 100;
-            int minVol = 1;
-            if (remoteCommand == "vol+" && this.powerOn == true)
-            {
-                if (this.volume <= maxVol)
+                if (this.mute == false)
                 {
-                    ++this.volume;
+                    this.mute = true;
+                    Console.Clear();
+                    this.DisplayScreen("Audio Muted");
                 }
-                else { this.volume = this.volume; }
+                else { this.mute = false; this.DisplayScreen(""); }
             }
-            if (remoteCommand == "vol-" && this.powerOn == true)
-            {
-                if (this.volume >= minVol)
-                {
-                    --this.volume;
-                }
-                else { this.volume = this.volume; }
-            }
-            this.DisplayScreen("Volume: " + this.volume.ToString());
+            else { Console.Clear(); this.DisplayScreen("Power Is Off, Turn It On"); }
         }
 
-        public void DisplayScreen(string displayCommand)
+        public void ChannelChange(int channel)
         {
-            Console.WriteLine("\t---------------------------------------");
-            Console.WriteLine("\t|                                     |");
-            Console.WriteLine("\t|                                     |");
-            Console.WriteLine("\t|                                     |");
-            Console.WriteLine("\t|                                     |");
-            Console.Write("\t|" + displayCommand + "                   ");
-            Console.WriteLine("        |");
-            Console.WriteLine("\t|                                     |");
-            Console.WriteLine("\t|                                     |");
-            Console.WriteLine("\t|                                     |");
-            Console.WriteLine("\t---------------------------------------");
+            if (this.powerOn == true)
+            {
+                this.channel = channel;
+                Console.Clear();
+                this.DisplayScreen("Channel: " + this.channel.ToString());
+            }
+            else { Console.Clear(); this.DisplayScreen("Power Is Off, Turn It On"); }
+        }
+        public void ChannelUpCommand()
+            {
+                int maxChannel = 999;
+
+                if (this.powerOn == true)
+                {
+                    if (this.channel <= maxChannel)
+                    {
+                        previousChannel = this.channel;
+                        ++this.channel;
+                    }
+                Console.Clear();
+                this.DisplayScreen("Channel: " + this.channel.ToString());
+            }
+            else { Console.Clear(); this.DisplayScreen("Power Is Off, Turn It On"); }
         }
 
+        public void ChannelDownCommand()
+        {
+            int minChannel = 1;
+        
+            if (this.powerOn == true)
+            {
+                if (this.channel >= minChannel)
+                {
+                    previousChannel = this.channel;
+                    --this.channel;
+                }
+                Console.Clear();
+                this.DisplayScreen("Channel: " + this.channel.ToString());
+             }
+             else
+              {
+                  Console.Clear(); this.DisplayScreen("Power Is Off, Turn It On");
+              }
+        }
+
+           public void LastChannelCommand()
+            {
+                if (this.powerOn == true)
+                {
+                    int temp = this.channel;
+                    this.channel = this.previousChannel;
+                    this.previousChannel = temp;
+                Console.Clear();
+                this.DisplayScreen("Channel: " + this.channel.ToString());
+                }
+                else { this.DisplayScreen("Power Is Off, Turn It On"); }
+            }
+
+           public virtual void SettingsCommand()
+            {
+
+            }
+           public void VolumeUp()
+           {
+                    int maxVol = 100;
+                if (this.powerOn == true)
+                {
+                    if (this.volume <= maxVol)
+                    {
+                        ++this.volume;
+                    }
+                Console.Clear();
+                this.DisplayScreen("Volume: " + this.volume.ToString());
+                }
+                else { Console.Clear(); this.DisplayScreen("Power Is Off, Turn It On"); }
+           }
+            public void VolumeDown()
+            {
+                int minVol = 1;
+                if (this.powerOn == true)
+                {
+                    if (this.volume >= minVol)
+                    {
+                        --this.volume;
+                    }
+                Console.Clear();
+                this.DisplayScreen("Volume: " + this.volume.ToString());
+                }
+                else { Console.Clear(); this.DisplayScreen("Power Is Off, Turn It On"); }
+            }
+
+
+    public void DisplayScreen(string displayCommand)
+            {
+                Console.WriteLine("\tPower Status: " + this.powerOn);
+                Console.WriteLine("\t|" + displayCommand+ "|\n");
+         
+            }
 
         public Screen() // Screen constructor
-        {
-            modelName="";
-            modelNumber="";
-            settings = false;
-            volume = 25;
-            channel = 1;
-            previousChannel = channel;
-            powerOn = false;
-            mute = false;
-            smartMenu = false;
-        }
- 
-    
-
-
-
-
-
-
+            {
+                modelName="";
+                modelNumber="";
+                settings = false;
+                volume = 25;
+                channel = 1;
+                previousChannel = channel;
+                powerOn = false;
+                mute = false;
+                smartMenu = false;
+                source="Antenna";
+            }
 
 }
 

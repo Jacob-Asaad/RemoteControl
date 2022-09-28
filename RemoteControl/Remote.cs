@@ -9,72 +9,96 @@ public class Remote
         screen = screenReference;
     }
 
-    public void changeChannel(string btnHandler)
+    public void changeChannel(int btnHandler)
     {
-        screen.ChannelCommand(btnHandler);
+        screen.ChannelChange(btnHandler);
     }
-    public void powerCommand(string btnHandler)
+    public void powerCommand()
     {
-        screen.PowerCommand(btnHandler);
+        screen.PowerCommand();
     }
-    public void sourceCommand(string btnHandler)
+    public void sourceCommand()
     {
-        screen.SourceCommand(btnHandler);
+        screen.SourceCommand();
     }
-    public void volumeCommand(string btnHandler)
+   
+    public void volumeUp()
     {
-        screen.VolumeCommand(btnHandler);
+        screen.VolumeUp();
     }
-    public void muteCommand()
+    public void volumeDown()
     {
-        screen.MuteCommand();
-    }
-    public void channelCommand(string btnHandler)
-    {
-        screen.ChannelCommand(btnHandler);
+        screen.VolumeDown();
     }
 
-    public void lastChannelCommand(string btnHandler)
+    public void muteCommand()
     {
-        screen.LastChannel(btnHandler);
+       screen.MuteCommand();
     }
- 
+    public void channelUpCommand()
+     {
+       screen.ChannelUpCommand();
+     }
+    public void channelDownCommand()
+     {
+       screen.ChannelDownCommand();
+     }
+    public void lastChannelCommand()
+    {
+        screen.LastChannelCommand();
+    }
+    public void settingsCommand()
+    {
+        screen.SettingsCommand();
+        screen.DisplayScreen("");
+    }
 
     public void RemoteCommandHandler(string btnHandler)
     {
-        
+       
             switch (btnHandler) { 
             case "pwr" :
-            powerCommand("pwr");      
+            powerCommand();      
             break;
+
             case "src":
-            sourceCommand("src");
+            sourceCommand();
              break;
+
             case "mute":
                 muteCommand();
-            break;
-            case "vol+":
-            volumeCommand("vol+");
-            break;
-            case "vol-":
-            volumeCommand("vol-");
-            break;
-            case "ch+":
-            channelCommand("ch+");
-            break;
-            case "ch-":
-            channelCommand("ch-");
-            break;
-            case "last":
-               lastChannelCommand("last");
                 break;
+
+            case "vol+":
+            volumeUp();
+            break;
+
+            case "vol-":
+            volumeDown();
+            break;
+
+           case "ch+":
+            channelUpCommand();
+            break;
+
+            case "ch-":
+                channelDownCommand();
+            break;
+
+            case "last":
+               lastChannelCommand();
+                break;
+
+            case "settings":
+                settingsCommand();
+                break;
+
             default:
-            Console.WriteLine("Invalid Model ID\n");
-            Console.Clear();
+                int.TryParse(btnHandler, out int value);
+                changeChannel(value);
             break;
 
              }
-
    }
     public void DisplayRemote()
     {
@@ -82,11 +106,11 @@ public class Remote
         Console.WriteLine(" [1] [2] [3] ");
         Console.WriteLine(" [4] [5] [6] ");
         Console.WriteLine(" [7] [8] [9] ");
-        Console.WriteLine("[-]        [PRE-CH]");
+        Console.WriteLine("[-]  [0]     [PRE-CH]");
         Console.WriteLine(" [+] [MUTE] [↑]");
         Console.WriteLine("[VOL]      [Ch]");
         Console.WriteLine(" [-]        [↓]");
-        Console.WriteLine("[Settings][Menu]");
+        Console.WriteLine("[SETTINGS][EXIT]");
     }
 
 
