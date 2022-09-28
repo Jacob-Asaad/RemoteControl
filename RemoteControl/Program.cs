@@ -1,21 +1,27 @@
-﻿  static bool ErrorCheck(string input)
+﻿ //COMP 586 - Project 1 - Remote Control - Jacob Asaad
+
+    static bool ErrorCheck(string input)
     {
         if (int.TryParse(input, out int result))
         {
             return true;
         }
-    else
-    {
-            switch (input)
+         else
         {
+            switch (input)
+            {
             case "pwr":
                 return true;
           
             case "src":
                 return true;
 
+            case "help":
+                return true;
+
             case "mute":
                 return true;
+
             case "vol+":
                 return true;
 
@@ -34,8 +40,7 @@
             case "settings":
                 return true;
             default:
-                return false;
-                
+                return false;    
             }
         }
     }
@@ -57,10 +62,9 @@
 
              case 1:
                     Console.Clear();
-                    Console.WriteLine("\n\n\tUN43TU7000 Selected");
                     Un43Model un43 = new Un43Model(); //create a new screen and introduce a new menu              
                     remote = new Remote(un43);
-                    un43.DisplayScreen("Power: Off");
+                    un43.DisplayScreen("");
                     string userInput;
                         remote.DisplayRemote();  
                      do
@@ -84,10 +88,9 @@
 
             case 2:
                 Console.Clear();
-                Console.WriteLine("\n\n\tUN50TU7000 Selected");
                 Un50Model un50 = new Un50Model(); //create a new screen and introduce a new menu              
                 remote = new Remote(un50);
-                un50.DisplayScreen("Power: Off");
+                un50.DisplayScreen("");
                 string userInput2;
                 remote.DisplayRemote();
 
@@ -102,7 +105,7 @@
                             remote.RemoteCommandHandler(userInput2);
                             remote.DisplayRemote();
                         }
-
+                    else { Console.WriteLine("Invalid Input"); }
                 } while (userInput2 != "exit");
 
                 introCheck = false;
@@ -110,10 +113,9 @@
 
             case 3:
                 Console.Clear();
-                Console.WriteLine("\n\n\tUN55TU7000 Selected");
                 Un55Model un55 = new Un55Model(); //create a new screen and introduce a new menu              
                 remote = new Remote(un55);
-                un55.DisplayScreen("Power: Off");
+                un55.DisplayScreen("");
                 string userInput3;
                 remote.DisplayRemote();
 
@@ -138,10 +140,9 @@
 
             case 4:
                 Console.Clear();
-                Console.WriteLine("\n\n\tUN58TU7000 Selected");
                 Un58Model un58 = new Un58Model(); //create a new screen and introduce a new menu              
                 remote = new Remote(un58);
-                un58.DisplayScreen("Power: Off");
+                un58.DisplayScreen("");
                 string userInput4;
                 remote.DisplayRemote();
 
@@ -166,10 +167,9 @@
 
             case 5:
                 Console.Clear();
-                Console.WriteLine("\n\n\tUN65TU7000 Selected");
                 Un65Model un65 = new Un65Model(); //create a new screen and introduce a new menu              
                 remote = new Remote(un65);
-                un65.DisplayScreen("Power: Off");
+                un65.DisplayScreen("");
                 string userInput5;
                 remote.DisplayRemote();
                     do
@@ -193,10 +193,9 @@
 
              case 6:
                 Console.Clear();
-                Console.WriteLine("\n\n\tUN70TU7000 Selected");
                 Un70Model un70 = new Un70Model(); //create a new screen and introduce a new menu              
                 remote = new Remote(un70);
-                un70.DisplayScreen("Power: Off");
+                un70.DisplayScreen("");
                 string userInput6;
                 remote.DisplayRemote();
                     do
@@ -220,10 +219,9 @@
 
              case 7:
                 Console.Clear();
-                Console.WriteLine("\n\n\tUN75TU7000 Selected");
                 Un75Model un75 = new Un75Model(); //create a new screen and introduce a new menu              
                 remote = new Remote(un75);
-                un75.DisplayScreen("Power: Off");
+                un75.DisplayScreen("");
                 string userInput7;
                 remote.DisplayRemote();
 

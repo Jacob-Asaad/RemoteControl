@@ -30,15 +30,16 @@
             {
                 this.powerOn = false;
                 this.DisplayScreen("Power: Off");
+                Console.Clear();
+                this.DisplayScreen("");
             }
-            else
+            else 
             {
                 this.powerOn = true;
                 this.DisplayScreen("Power: On");
                 Console.Clear();
                 this.DisplayScreen("");
             }
-
         }
 
         public void SourceCommand()
@@ -87,7 +88,7 @@
                     Console.Clear();
                     this.DisplayScreen("Audio Muted");
                 }
-                else { this.mute = false; this.DisplayScreen(""); }
+                else { Console.Clear(); this.mute = false; this.DisplayScreen(""); }
             }
             else { Console.Clear(); this.DisplayScreen("Power Is Off, Turn It On"); }
         }
@@ -184,10 +185,27 @@
                 }
                 else { Console.Clear(); this.DisplayScreen("Power Is Off, Turn It On"); }
             }
-
-
-    public void DisplayScreen(string displayCommand)
+            public void ShowCommands()
             {
+            Console.Clear();
+            Console.WriteLine("=============Commands=============");
+            Console.WriteLine("'pwr' --> switch power on/off");
+            Console.WriteLine("'src' --> switch source");
+            Console.WriteLine("'1-999' --> change channel");
+            Console.WriteLine("'ch+' --> increment channel");
+            Console.WriteLine("'ch-' --> decrement channel");
+            Console.WriteLine("'last' --> go to last channel");
+            Console.WriteLine("'vol+' --> increment volume");
+            Console.WriteLine("'vol-' --> decrement volume");
+            Console.WriteLine("'settings' --> show tv info");
+            Console.WriteLine("'exit' --> quit program");
+            Console.WriteLine("==================================");
+            this.DisplayScreen("");
+            }
+
+            public void DisplayScreen(string displayCommand)
+            {
+                Console.WriteLine("\n\n\t"+this.modelNumber+" Selected");
                 Console.WriteLine("\tPower Status: " + this.powerOn);
                 Console.WriteLine("\t|" + displayCommand+ "|\n");
          

@@ -52,6 +52,10 @@ public class Remote
         screen.SettingsCommand();
         screen.DisplayScreen("");
     }
+    public void showCommands()
+    {
+        screen.ShowCommands();
+    }
 
     public void RemoteCommandHandler(string btnHandler)
     {
@@ -61,13 +65,17 @@ public class Remote
             powerCommand();      
             break;
 
+            case "help":
+            showCommands();
+            break;
+
             case "src":
             sourceCommand();
              break;
 
             case "mute":
-                muteCommand();
-                break;
+            muteCommand();
+            break;
 
             case "vol+":
             volumeUp();
@@ -77,24 +85,24 @@ public class Remote
             volumeDown();
             break;
 
-           case "ch+":
+            case "ch+":
             channelUpCommand();
             break;
 
             case "ch-":
-                channelDownCommand();
+            channelDownCommand();
             break;
 
             case "last":
-               lastChannelCommand();
-                break;
+            lastChannelCommand();
+            break;
 
             case "settings":
-                settingsCommand();
-                break;
+            settingsCommand();
+            break;
 
             default:
-                int.TryParse(btnHandler, out int value);
+                int.TryParse(btnHandler, out int value); //used to allow user to enter numbers and automatically change the channel
                 changeChannel(value);
             break;
 
@@ -102,15 +110,15 @@ public class Remote
    }
     public void DisplayRemote()
     {
-        Console.WriteLine("[PWR]   [SRC]");
+        Console.WriteLine("[pwr]   [src]");
         Console.WriteLine(" [1] [2] [3] ");
         Console.WriteLine(" [4] [5] [6] ");
         Console.WriteLine(" [7] [8] [9] ");
-        Console.WriteLine("[-]  [0]     [PRE-CH]");
-        Console.WriteLine(" [+] [MUTE] [↑]");
-        Console.WriteLine("[VOL]      [Ch]");
-        Console.WriteLine(" [-]        [↓]");
-        Console.WriteLine("[SETTINGS][EXIT]");
+        Console.WriteLine(" [-] [0] [PRE-CH]");
+        Console.WriteLine(" [+] [mute] [↑]");
+        Console.WriteLine("[vol]      [ch]");
+        Console.WriteLine(" [-] [help] [↓]");
+        Console.WriteLine("[settings][exit]");
     }
 
 
