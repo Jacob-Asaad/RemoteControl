@@ -1,5 +1,6 @@
 ﻿ //COMP 586 - Project 1 - Remote Control - Jacob Asaad
     //jacob push test
+    //hi
     static bool ErrorCheck(string input)
     {
         if (int.TryParse(input, out int result))
